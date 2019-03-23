@@ -1,3 +1,5 @@
 # spring-jdbc
 
-This is sprin-jdbc project.
+This is spring-jdbc project.
+
+This is testing statement.
