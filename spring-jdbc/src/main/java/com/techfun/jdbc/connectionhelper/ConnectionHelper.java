@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionHelper {
 	private static String DB_DRIVER = "com.mysql.jdbc.Driver";
-	private static String DB_CONNECTION = "jdbc:mysql://localhost:3306/employee";
+	private static String DB_CONNECTION = "jdbc:mysql://localhost:3306/Ride";
 	private static String DB_USER = "root";
 	private static String DB_PASSWORD = "root";
 
