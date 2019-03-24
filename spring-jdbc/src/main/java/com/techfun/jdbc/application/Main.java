@@ -15,10 +15,10 @@ public class Main {
 		Ride ride = new Ride();
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("application-context.xml");
 		RideService service = appContext.getBean("rideServiceImpl",RideServiceImpl.class);
-		//testCreateRide(ride);
-		//testUpdateRide(ride);
-		//testDeleteRide(ride);
-		testSelectRide(ride,service);
+		//testCreateRide(ride,service);
+		//testUpdateRide(ride,service);
+		testDeleteRide(ride,service);
+		//testSelectRide(ride,service);
 	}
 	
 	private static void testCreateRide(Ride ride,RideService service) {
@@ -32,7 +32,7 @@ public class Main {
 	private static void testUpdateRide(Ride ride,RideService service) {
 		ride.setName("Pyae Phyo");
 		ride.setDuration(11);
-		ride.setId(1);
+		ride.setId(3);
 		
 		//RideService rideService = new RideServiceImpl();
 		service.updateRide(ride);
@@ -40,7 +40,7 @@ public class Main {
 	}
 	
 	private static void testDeleteRide(Ride ride,RideService service) {
-		ride.setId(2);
+		ride.setId(3);
 		
 		//RideService rideService = new RideServiceImpl();
 		service.deleteRide(ride);
