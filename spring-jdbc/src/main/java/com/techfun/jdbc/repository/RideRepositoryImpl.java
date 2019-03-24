@@ -1,14 +1,16 @@
 package com.techfun.jdbc.repository;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.stereotype.Repository;
 
 import com.techfun.jdbc.connectionhelper.ConnectionHelper;
 import com.techfun.jdbc.model.Ride;
 
+@Repository
 public class RideRepositoryImpl implements RideRepository {
 
 	public void createRide(Ride ride) {
@@ -31,12 +33,12 @@ public class RideRepositoryImpl implements RideRepository {
 	
 	public void updateRide(Ride ride) {
 
-		String insertTableSQL = "UPDATE ride SET name = ?,duration = ? "
+		String updateTableSQL = "UPDATE ride SET name = ?,duration = ? "
                 + " WHERE id = ?";
 
 
 		try (Connection dbConnection = ConnectionHelper.getDBConnection();
-				PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)	){
+				PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL)	){
 
 			preparedStatement.setString(1, ride.getName());
 			preparedStatement.setInt(2, ride.getDuration());
