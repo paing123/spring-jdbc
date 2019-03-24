@@ -10,14 +10,11 @@ import com.techfun.jdbc.model.Ride;
 public class RideRepositoryImpl implements RideRepository {
 
 	public void createRide(Ride ride) {
-		Connection dbConnection = null;
-		PreparedStatement preparedStatement = null;
 
 		String insertTableSQL = "INSERT INTO ride(name,duration) values(?,?)";
 
-		try {
-			dbConnection = ConnectionHelper.getDBConnection();
-			preparedStatement = dbConnection.prepareStatement(insertTableSQL);
+		try (Connection dbConnection = ConnectionHelper.getDBConnection();
+				PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)	){
 
 			preparedStatement.setString(1, ride.getName());
 			preparedStatement.setInt(2, ride.getDuration());
@@ -27,27 +24,46 @@ public class RideRepositoryImpl implements RideRepository {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 
-		} finally {
-			
-			if (preparedStatement != null) {
-				try {
-					preparedStatement.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-			if (dbConnection != null) {
-				try {
-					dbConnection.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 		}
-		//return ride;
 	}
 	
+	public void updateRide(Ride ride) {
+
+		String insertTableSQL = "UPDATE ride SET name = ?,duration = ? "
+                + " WHERE id = ?";
+
+
+		try (Connection dbConnection = ConnectionHelper.getDBConnection();
+				PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)	){
+
+			preparedStatement.setString(1, ride.getName());
+			preparedStatement.setInt(2, ride.getDuration());
+			preparedStatement.setInt(3, ride.getId());
+
+			preparedStatement.executeUpdate();
+			System.out.println("Record is updated successfully!");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		}
+	}
+	
+	public void deleteRide(Ride ride) {
+
+		String deleteTableSQL = "DELETE from ride WHERE id = ?";
+
+
+		try (Connection dbConnection = ConnectionHelper.getDBConnection();
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(deleteTableSQL)	){
+
+			preparedStatement.setInt(1, ride.getId());
+
+			preparedStatement.executeUpdate();
+			System.out.println("Record is deleted successfully!");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		} 
+	}
+
 }
