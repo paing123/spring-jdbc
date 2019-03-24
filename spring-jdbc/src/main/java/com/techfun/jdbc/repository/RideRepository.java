@@ -6,4 +6,6 @@ public interface RideRepository {
 	void createRide(Ride ride);
 	void updateRide(Ride ride);
 	void deleteRide(Ride ride);
+	void selectRide(Ride ride);
+	
 }

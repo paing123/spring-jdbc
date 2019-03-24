@@ -19,4 +19,9 @@ public class RideServiceImpl implements RideService {
 		RideRepositoryImpl rideRepositoryImpl = new RideRepositoryImpl();
 		rideRepositoryImpl.deleteRide(ride);
 	}
+	
+	public void selectRide(Ride ride) {
+		RideRepositoryImpl rideRepositoryImpl = new RideRepositoryImpl();
+		rideRepositoryImpl.selectRide(ride);
+	}
 }

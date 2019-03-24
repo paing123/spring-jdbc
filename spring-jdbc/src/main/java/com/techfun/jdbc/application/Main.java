@@ -11,7 +11,8 @@ public class Main {
 		Ride ride = new Ride();
 		//testCreateRide(ride);
 		//testUpdateRide(ride);
-		testDeleteRide(ride);		
+		//testDeleteRide(ride);
+		testSelectRide(ride);
 	}
 	
 	private static void testCreateRide(Ride ride) {
@@ -38,6 +39,12 @@ public class Main {
 		
 		RideService rideService = new RideServiceImpl();
 		rideService.deleteRide(ride);
+		System.out.println("Process Successful completed!");
+	}
+	
+	private static void testSelectRide(Ride ride) {
+		RideService rideService = new RideServiceImpl();
+		rideService.selectRide(ride);
 		System.out.println("Process Successful completed!");
 	}
 }
