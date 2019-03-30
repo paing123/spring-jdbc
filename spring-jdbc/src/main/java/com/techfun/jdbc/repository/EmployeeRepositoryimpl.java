@@ -1,12 +1,15 @@
 package com.techfun.jdbc.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.techfun.jdbc.model.Employee;
+import com.techfun.jdbc.repository.util.EmployeeRowMapper;
 
-@Repository("employeeRepositoryimpl")
+@Repository("employeeRepository")
 public class EmployeeRepositoryimpl implements EmployeeRepository {
 
 	@Autowired
@@ -25,5 +28,10 @@ public class EmployeeRepositoryimpl implements EmployeeRepository {
 	public void deleteEmployee(Employee employee) {
 		jdbcTemplate.update("DELETE from employee WHERE employeeid = ?", employee.getId());
 	}
-
+	
+	@Override
+	public List<Employee> selectEmployee() {
+		List<Employee> employee = jdbcTemplate.query("select * from employee",new EmployeeRowMapper());	
+		return employee;
+	}
 }
