@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.techfun.jdbc.connectionhelper.ConnectionHelper;
 import com.techfun.jdbc.model.Ride;
+import com.techfun.jdbc.repository.util.RideRowMapper;
 
 @Repository
 public class RideRepositoryImpl implements RideRepository {
@@ -20,6 +22,7 @@ public class RideRepositoryImpl implements RideRepository {
 
 	public void createRide(Ride ride) {
 		jdbcTemplate.update("insert into ride(name,duration) values(?,?) ", ride.getName(), ride.getDuration());
+		System.out.println("Test Transaction");
 	}
 
 	public void updateRide(Ride ride) {
@@ -55,5 +58,11 @@ public class RideRepositoryImpl implements RideRepository {
 			System.out.println(e.getMessage());
 
 		}
+	}
+	
+	@Override
+	public List<Ride> selectRide() {
+		List<Ride> ride = jdbcTemplate.query("select * from ride",new RideRowMapper());	
+		return ride;
 	}
 }
