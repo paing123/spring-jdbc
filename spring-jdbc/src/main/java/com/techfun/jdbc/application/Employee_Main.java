@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.techfun.jdbc.model.Employee;
+import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.service.EmployeeService;
 
 public class Employee_Main {
@@ -16,7 +17,8 @@ public class Employee_Main {
 		// testCreateEmployee(service);
 		// testUpdateEmployee(service);
 		//testDeleteEmployee(service);
-		testSelectEmployee(service);
+		//testSelectEmployee(service);
+		testCreateEmployeeAndRide(service);
 	}
 
 	private static void testCreateEmployee(EmployeeService service) {
@@ -54,6 +56,21 @@ public class Employee_Main {
 			System.out.println("Name is " + emp.getName());
 			System.out.println("Address is " + emp.getAddress());
 			System.out.println("Age is " + emp.getAge());
+			System.out.println("--------------------------");
 		}
+	}
+	
+	private static void testCreateEmployeeAndRide(EmployeeService service) {
+		Employee employee = new Employee();
+		Ride ride = new Ride();
+		employee.setName("Paing");
+		employee.setAddress("Bago-Hnin thar Gone");
+		employee.setAge(22);
+		
+		ride.setName("PPP123");
+		ride.setDuration(15);
+
+		service.createEmployeeAndRide(employee, ride);
+		System.out.println("Process Successful completed!");
 	}
 }

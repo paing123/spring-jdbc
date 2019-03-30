@@ -1,9 +1,13 @@
 package com.techfun.jdbc.application;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
+import com.techfun.jdbc.service.EmployeeService;
 import com.techfun.jdbc.service.RideService;
 import com.techfun.jdbc.service.RideServiceImpl;
 
@@ -15,10 +19,11 @@ public class Main {
 		Ride ride = new Ride();
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("application-context.xml");
 		RideService service = appContext.getBean("rideServiceImpl",RideServiceImpl.class);
-		//testCreateRide(ride,service);
+		testCreateRide(ride,service);
 		//testUpdateRide(ride,service);
-		testDeleteRide(ride,service);
+		//testDeleteRide(ride,service);
 		//testSelectRide(ride,service);
+		//selectRide(service);
 	}
 	
 	private static void testCreateRide(Ride ride,RideService service) {
@@ -51,5 +56,14 @@ public class Main {
 		//RideService rideService = new RideServiceImpl();
 		service.selectRide(ride);
 		System.out.println("Process Successful completed!");
+	}
+	
+	private static void selectRide(RideService service) {
+		List<Ride> rides = service.selectRide();
+		for (Ride ride : rides) {
+			System.out.println("ID is " + ride.getId());
+			System.out.println("Name is " + ride.getName());
+			System.out.println("Duration is " + ride.getDuration());
+		}
 	}
 }

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.techfun.jdbc.model.Employee;
+import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.repository.EmployeeRepository;
-import com.techfun.jdbc.repository.util.EmployeeRowMapper;
 
 @Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
@@ -35,4 +35,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> selectEmployee() {
 		return employeeRepository.selectEmployee();
 	}
+	
+	public void createEmployeeAndRide(Employee employee,Ride ride) {
+
+		// RideRepositoryImpl rideRepositoryImpl = new RideRepositoryImpl();
+		employeeRepository.createEmployeeAndRide(employee, ride);
+	}
+
 }

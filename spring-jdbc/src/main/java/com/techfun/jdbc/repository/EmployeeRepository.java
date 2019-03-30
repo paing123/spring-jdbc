@@ -3,6 +3,7 @@ package com.techfun.jdbc.repository;
 import java.util.List;
 
 import com.techfun.jdbc.model.Employee;
+import com.techfun.jdbc.model.Ride;
 
 public interface EmployeeRepository {
 	void createEmployee(Employee employee);
@@ -12,4 +13,6 @@ public interface EmployeeRepository {
 	void deleteEmployee(Employee employee);
 	
 	List<Employee> selectEmployee();
+	
+	void createEmployeeAndRide(Employee employee,Ride ride);
 }
