@@ -45,4 +45,16 @@ public class EmployeeRepositoryimpl implements EmployeeRepository {
 				employee.getAddress(), employee.getAge());
 		jdbcTemplate.update("insert into ride(name,duration) values(?,?) ", ride.getName(), ride.getDuration());
 	}
+	
+	public int totalEmployeeCount() {
+		String sql = "select count(*) from employee";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+	
+	@Override
+	public Employee selectEmployeeID(Employee emp) {
+		String sql = "select * from employee where employeeid = ?";
+		Employee employee = (Employee)jdbcTemplate.queryForObject(sql,new EmployeeRowMapper(),emp.getId());
+		return employee;
+	}
 }

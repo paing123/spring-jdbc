@@ -9,7 +9,7 @@ import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
 import com.techfun.jdbc.repository.RideRepository;
 
-@Service("rideServiceImpl")
+@Service("rideService")
 public class RideServiceImpl implements RideService {
 	
 	@Autowired
@@ -29,11 +29,6 @@ public class RideServiceImpl implements RideService {
 	public void deleteRide(Ride ride) {
 		//RideRepositoryImpl rideRepositoryImpl = new RideRepositoryImpl();
 		rideRepository.deleteRide(ride);
-	}
-	
-	public void selectRide(Ride ride) {
-		//RideRepositoryImpl rideRepositoryImpl = new RideRepositoryImpl();
-		rideRepository.selectRide(ride);
 	}
 	
 	@Override

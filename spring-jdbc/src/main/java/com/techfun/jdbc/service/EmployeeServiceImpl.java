@@ -41,5 +41,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// RideRepositoryImpl rideRepositoryImpl = new RideRepositoryImpl();
 		employeeRepository.createEmployeeAndRide(employee, ride);
 	}
+	
+	public int totalEmployeeCount() {
+		return employeeRepository.totalEmployeeCount();
+	}
+	
+	public Employee selectEmployeeID(Employee employee) {
+		return employeeRepository.selectEmployeeID(employee);
+	}
 
 }

@@ -11,22 +11,19 @@ import com.techfun.jdbc.service.EmployeeService;
 import com.techfun.jdbc.service.RideService;
 import com.techfun.jdbc.service.RideServiceImpl;
 
-
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Ride ride = new Ride();
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("application-context.xml");
-		RideService service = appContext.getBean("rideServiceImpl",RideServiceImpl.class);
-		testCreateRide(ride,service);
-		//testUpdateRide(ride,service);
-		//testDeleteRide(ride,service);
-		//testSelectRide(ride,service);
+		RideService service = appContext.getBean("rideService",RideService.class);
+		testCreateRide(service);
+		//testUpdateRide(service);
+		//testDeleteRide(service);
 		//selectRide(service);
 	}
 	
-	private static void testCreateRide(Ride ride,RideService service) {
+	private static void testCreateRide(RideService service) {
+		Ride ride = new Ride();
 		ride.setName("Phyo Paing");
 		ride.setDuration(15);
 		
@@ -34,27 +31,21 @@ public class Main {
 		System.out.println("Process Successful completed!");
 	}
 	
-	private static void testUpdateRide(Ride ride,RideService service) {
+	private static void testUpdateRide(RideService service) {
+		Ride ride = new Ride();
 		ride.setName("Pyae Phyo");
 		ride.setDuration(11);
 		ride.setId(3);
 		
-		//RideService rideService = new RideServiceImpl();
 		service.updateRide(ride);
 		System.out.println("Process Successful completed!");
 	}
 	
-	private static void testDeleteRide(Ride ride,RideService service) {
+	private static void testDeleteRide(RideService service) {
+		Ride ride = new Ride();
 		ride.setId(3);
 		
-		//RideService rideService = new RideServiceImpl();
 		service.deleteRide(ride);
-		System.out.println("Process Successful completed!");
-	}
-	
-	private static void testSelectRide(Ride ride,RideService service) {
-		//RideService rideService = new RideServiceImpl();
-		service.selectRide(ride);
 		System.out.println("Process Successful completed!");
 	}
 	

@@ -17,4 +17,8 @@ public interface EmployeeService {
 	List<Employee> selectEmployee();
 	
 	void createEmployeeAndRide(Employee employee,Ride ride);
+	
+	int totalEmployeeCount();
+	
+	Employee selectEmployeeID(Employee emp);
 }

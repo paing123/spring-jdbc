@@ -18,7 +18,9 @@ public class Employee_Main {
 		// testUpdateEmployee(service);
 		//testDeleteEmployee(service);
 		//testSelectEmployee(service);
-		testCreateEmployeeAndRide(service);
+		//testCreateEmployeeAndRide(service);
+		//testCountEmployee(service);
+		testEmployeeID(service);
 	}
 
 	private static void testCreateEmployee(EmployeeService service) {
@@ -60,6 +62,17 @@ public class Employee_Main {
 		}
 	}
 	
+	private static void testEmployeeID(EmployeeService service) {
+		Employee employee = new Employee();
+		employee.setId(1);
+		
+		Employee emp = service.selectEmployeeID(employee);
+		System.out.println("ID is " + emp.getId());
+		System.out.println("Name is " + emp.getName());
+		System.out.println("Address is " + emp.getAddress());
+		System.out.println("Age is " + emp.getAge());
+	}
+	
 	private static void testCreateEmployeeAndRide(EmployeeService service) {
 		Employee employee = new Employee();
 		Ride ride = new Ride();
@@ -72,5 +85,9 @@ public class Employee_Main {
 
 		service.createEmployeeAndRide(employee, ride);
 		System.out.println("Process Successful completed!");
+	}
+	
+	private static void testCountEmployee(EmployeeService service) {
+		System.out.println("The number of row is "+service.totalEmployeeCount());
 	}
 }
