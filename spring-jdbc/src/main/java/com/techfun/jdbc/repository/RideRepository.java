@@ -10,4 +10,7 @@ public interface RideRepository {
 	void updateRide(Ride ride);
 	void deleteRide(Ride ride);
 	List<Ride> selectRide();
+	int totalRideCount();
+	Ride selectRideID(Ride r);
+	
 }

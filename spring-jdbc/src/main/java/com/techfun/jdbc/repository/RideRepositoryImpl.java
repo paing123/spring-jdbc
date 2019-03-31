@@ -9,7 +9,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.techfun.jdbc.model.Employee;
 import com.techfun.jdbc.model.Ride;
+import com.techfun.jdbc.repository.util.EmployeeRowMapper;
 import com.techfun.jdbc.repository.util.RideRowMapper;
 
 @Repository("rideRepository")
@@ -38,5 +41,15 @@ public class RideRepositoryImpl implements RideRepository {
 		return ride;
 	}
 	
+	public int totalRideCount() {
+		String sql = "select count(*) from ride";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
 	
+	@Override
+	public Ride selectRideID(Ride r) {
+		String sql = "select * from ride where id = ?";
+		Ride ride = (Ride)jdbcTemplate.queryForObject(sql,new RideRowMapper(),r.getId());
+		return ride;
+	}
 }

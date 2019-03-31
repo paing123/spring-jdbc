@@ -35,4 +35,13 @@ public class RideServiceImpl implements RideService {
 	public List<Ride> selectRide() {
 		return rideRepository.selectRide();
 	}
+	
+	public int totalRideCount() {
+		return rideRepository.totalRideCount();
+	}
+	
+	public Ride selectRideID(Ride ride) {
+		return rideRepository.selectRideID(ride);
+	}
+	
 }

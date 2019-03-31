@@ -73,6 +73,10 @@ public class Employee_Main {
 		System.out.println("Age is " + emp.getAge());
 	}
 	
+	private static void testCountEmployee(EmployeeService service) {
+		System.out.println("The number of row is "+service.totalEmployeeCount());
+	}
+	
 	private static void testCreateEmployeeAndRide(EmployeeService service) {
 		Employee employee = new Employee();
 		Ride ride = new Ride();
@@ -85,9 +89,5 @@ public class Employee_Main {
 
 		service.createEmployeeAndRide(employee, ride);
 		System.out.println("Process Successful completed!");
-	}
-	
-	private static void testCountEmployee(EmployeeService service) {
-		System.out.println("The number of row is "+service.totalEmployeeCount());
 	}
 }
