@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * @author Paing
- *
- */
 package com.techfun.jdbc.application;
 
 import org.springframework.context.ApplicationContext;
@@ -20,19 +13,51 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext("application-context.xml");
 		StaffService service = appContext.getBean("staffService", StaffService.class); 
-		testCreateStaff(service);
+		//testCreateStaff(service);
+		//testUpdateStaff(service);
+		testDelectStaff(service);
+		//testCreateStaffID(service);
 	}
 	
 	private static void testCreateStaff(StaffService service) {
 		Staff staff = new Staff();
 		Role role = new Role();
-		staff.setStaffName("Pyae Paing");
-		staff.setAge(22);
-		staff.setPosition("Instructor");
+		staff.setStaffName("Phyo Paing");
+		staff.setAge(21);
+		staff.setPosition("Senior Instructor");
 		role.setRoleName("Staff");
 
 		service.createStaff(staff,role);
-		System.out.println("Process Successful completed!");
+		System.out.println("Create Process Successful completed!");
 	}
+	
+	private static void testCreateStaffID(StaffService service) {
+		Staff staff = new Staff();
+		staff.setStaffId(4);
+		staff.setStaffName("Phyo Paing");
+		staff.setAge(21);
+		staff.setPosition("Senior Instructor");
 
+		service.insertStaff(staff);
+		System.out.println("Create Process Successful completed!");
+	}
+	
+	private static void testDelectStaff(StaffService service) {
+		Staff staff = new Staff();
+		Role role = new Role();
+		staff.setStaffId(8);
+		service.deleteStaff(staff, role);
+		System.out.println("Delete Process Successful completed!");
+	}
+	
+	private static void testUpdateStaff(StaffService service) {
+		Staff staff = new Staff();
+		staff.setStaffName("Pyae Phyo Paing");
+		staff.setAge(22);
+		staff.setPosition("SI");
+		staff.setStaffId(4);
+		
+		service.updateStaff(staff);
+		System.out.println("Process Successful completed!");
+	}	
 }

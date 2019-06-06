@@ -23,7 +23,7 @@ public class StaffRepositoryImpl implements StaffRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Transactional
-	public void createStaff(Staff staff,Role role) {
+	public void createStaff(Staff staff, Role role) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 
@@ -38,8 +38,28 @@ public class StaffRepositoryImpl implements StaffRepository {
 				return ps;
 			}
 		}, keyHolder);
-		
-		jdbcTemplate.update("insert into role(staffid,rolename) values(?,?,?) ", keyHolder.getKey(),
-				role.getRoleName());
+
+		jdbcTemplate.update("insert into role(staffid,rolename) values(?,?) ", keyHolder.getKey(), role.getRoleName());
+	}
+
+	@Transactional
+	public void deleteStaff(Staff staff, Role role) {
+		jdbcTemplate.update("DELETE from staff WHERE staffid = ?", staff.getStaffId());
+		jdbcTemplate.update("DELETE from role WHERE staffid = ?", staff.getStaffId());
+	}
+
+	public void updateStaff(Staff staff) {
+		jdbcTemplate.update("UPDATE staff SET staffname = ?,  age = ?, position = ? WHERE staffid = ?",
+				staff.getStaffName(), staff.getAge(), staff.getPosition(), staff.getStaffId());
+	}
+	
+	public void insertStaffByID(Staff staff){
+		try {
+		jdbcTemplate.update("insert into staff (staffid,staffname,age,position) values (?.?,?,?)", staff.getStaffId(),
+				staff.getStaffName(), staff.getAge(), staff.getPosition());
+		}catch(Exception e)
+		{
+			System.out.print("Duplicate! Can't inset!");
+		}
 	}
 }

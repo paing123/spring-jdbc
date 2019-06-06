@@ -1,5 +1,7 @@
 package com.techfun.jdbc.service;
 
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,17 @@ public class StaffServiceImpl implements StaffService {
 
 	public void createStaff(Staff staff,Role role) {
 		staffRepository.createStaff(staff, role);
+	}
+	
+	public void updateStaff(Staff staff) {
+		staffRepository.updateStaff(staff);
+	}
+	
+	public void deleteStaff(Staff staff,Role role) {
+		staffRepository.deleteStaff(staff, role);
+	}
+	
+	public void insertStaff(Staff staff){
+		staffRepository.insertStaffByID(staff);
 	}
 }
